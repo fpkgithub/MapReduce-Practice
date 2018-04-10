@@ -42,6 +42,9 @@ public class TopN extends Configured implements Tool {
 		protected void cleanup(Context context) throws IOException, InterruptedException {
 			for (String text : map.values()) {
 				if (text.toString() != null && !text.toString().equals("")) {
+					//NullWritable是Writable的一个特殊类，实现方法为空实现，不从数据流中读数据，也不写入数据，只充当占位符，
+					//如在MapReduce中，如果你不需要使用键或值，你就可以将键或值声明为NullWritable,
+					//NullWritable是一个不可变的单实例类型。
 					context.write(NullWritable.get(), new Text(text));
 				}
 			}
