@@ -38,6 +38,7 @@ public class TopN extends Configured implements Tool {
 
 		}
 
+		//此方法被MapReduce框架仅且执行一次，在执行完毕Map任务后，进行相关变量或资源的释放工作
 		protected void cleanup(Context context) throws IOException, InterruptedException {
 			for (String text : map.values()) {
 				if (text.toString() != null && !text.toString().equals("")) {
